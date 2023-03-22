@@ -5,8 +5,25 @@
     <%= render "shared/side-bar" %>
   </div>
   <div class="main">
-
     <%# 選択項目毎の表示 %>
-
+    <div class="main-title">仕入先一覧</div>
+    <div class="main-content">
+      <table>
+        <tr>
+          <th>仕入先名</th>
+          <th>住所</th>
+          <th>連絡先</th>
+          <th>担当者</th>
+        </tr>
+        <% 5.times do %>
+        <tr>
+          <td><%=  link_to '＊＊＊＊会社', "#", class: "client-name" %></td>
+          <td>＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊</td>
+          <td>中身</td>
+          <td>中身</td>
+        </tr>
+        <% end %>
+      </table>
+    </div>
   </div>
 </div>
