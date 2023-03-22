@@ -1,0 +1,14 @@
+/* サイドバー */
+
+.side-bar-title{
+  background-color: #fafafa;
+  padding: 10px 20px;
+}
+
+.side-bar-list{
+  padding: 10px 30px;
+}
+
+.side-bar-list-content{
+  text-decoration: none;
+}
