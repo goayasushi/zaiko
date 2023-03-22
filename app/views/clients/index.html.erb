@@ -1,3 +1,37 @@
 <%= render "shared/header" %>
-<div class='main'>
+
+<div class="wrapper">
+  <div class="side-bar">
+    <%= render "shared/side-bar" %>
+  </div>
+  <div class="main">
+    <%# 選択項目毎の表示 %>
+    <div class="main-title">仕入先一覧</div>
+    <div class="main-content">
+      <table>
+        <tr>
+          <th>仕入先名</th>
+          <th>郵便番号</th>
+          <th>都道府県</th>
+          <th>市区町村</th>
+          <th>番地</th>
+          <th>建物名</th>
+          <th>電話番号</th>
+          <th>担当者</th>
+        </tr>
+        <% @clients.each do |client| %>
+          <tr>
+            <td><%=  link_to client.client_name, "#", class: "client-name" %></td>
+            <td><%= client.postcode %></td>
+            <td><%= client.prefecture.name %></td>
+            <td><%= client.city %></td>
+            <td><%= client.block %></td>
+            <td><%= client.building %></td>
+            <td><%= client.phone %></td>
+            <td><%= client.pic %></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
 </div>

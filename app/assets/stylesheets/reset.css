@@ -41,9 +41,7 @@ legend,
 input,
 textarea,
 p,
-blockquote,
-th,
-td {
+blockquote {
   margin:0;
   padding:0;
 }
@@ -76,8 +74,7 @@ ul {
   list-style:none;
 }
 
-caption,
-th {
+caption {
   text-align:left;
 }
 h1,
