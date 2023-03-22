@@ -1,6 +1,6 @@
 class ClientsController < ApplicationController
   def index
-    
+    @clients = Client.includes(:user).order("created_at DESC")
   end
 
   def new
