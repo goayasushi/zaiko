@@ -9,7 +9,6 @@
     <%# 選択項目毎の表示 %>
       <%= form_with model: @part, id: 'charge-form', class: 'transaction-form-wrap',local: true do |f| %>
         
-        <%# 配送先の入力 %>
         <div class='shipping-address-form'>
           <h1 class='info-input-haedline'>
             部品情報入力
@@ -45,7 +44,6 @@
           </div>
 
         </div>
-        <%# /配送先の入力 %>
         <div class='record-btn'>
           <%= f.submit "登録" ,class:"record-red-btn", id:"button" %>
         </div>
