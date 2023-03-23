@@ -1,4 +1,8 @@
 class PurchasesController < ApplicationController
+  def index
+    @purchases = Purchase.includes(:user).order("created_at DESC")
+  end
+
   def new
     @purchase = Purchase.new
   end
@@ -6,7 +10,7 @@ class PurchasesController < ApplicationController
   def create
     @purchase = Purchase.new(purchase_params)
     if @purchase.save
-      redirect_to clients_path
+      redirect_to purchases_path
     else
       render :new
     end
