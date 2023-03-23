@@ -1,0 +1,29 @@
+<%= render "shared/header" %>
+
+<div class="wrapper">
+  <div class="side-bar">
+    <%= render "shared/side-bar" %>
+  </div>
+  <div class="main">
+    <%# 選択項目毎の表示 %>
+    <div class="main-title">部品一覧</div>
+    <div class="main-content">
+      <table>
+        <tr>
+          <th>部品名</th>
+          <th>仕入先名</th>
+          <th>仕入単価</th>
+          <th>販売単価</th>
+        </tr>
+        <% @parts.each do |part| %>
+          <tr>
+            <td><%=  link_to part.part_name, "#", class: "part-name" %></td>
+            <td><%= part.client.client_name %></td>
+            <td><%= part.purchase_price %></td>
+            <td><%= part.selling_price %></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>

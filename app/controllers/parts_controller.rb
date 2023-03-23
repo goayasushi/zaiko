@@ -1,4 +1,8 @@
 class PartsController < ApplicationController
+  def index
+    @parts = Part.includes(:user).order("created_at DESC")
+  end
+
   def new
     @part = Part.new
   end
@@ -6,7 +10,7 @@ class PartsController < ApplicationController
   def create
     @part = Part.new(part_params)
     if @part.save
-      redirect_to clients_path
+      redirect_to parts_path
     else
       render :new
     end
