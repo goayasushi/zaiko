@@ -1,0 +1,57 @@
+<%= render "shared/header" %>
+
+<div class="wrapper">
+  <div class="side-bar">
+    <%= render "shared/side-bar" %>
+  </div>
+  <div class="main">
+    <div class="main-content">
+    <%# 選択項目毎の表示 %>
+      <%= form_with model: @part, id: 'charge-form', class: 'transaction-form-wrap',local: true do |f| %>
+        
+        <%# 配送先の入力 %>
+        <div class='shipping-address-form'>
+          <h1 class='info-input-haedline'>
+            部品情報入力
+          </h1>
+          <%= render 'shared/error_messages', model: @part %>
+          <div class="form-group">
+            <div class='form-text-wrap'>
+              <label class="form-text">部品名</label>
+              <span class="indispensable">必須</span>
+            </div>
+            <%= f.text_area :part_name, class:"input-default", id:"part-name", placeholder:"例）ヘッド", maxlength:"40" %>
+          </div>
+          <div class="form-group">
+            <div class='form-text-wrap'>
+              <label class="form-text">仕入先</label>
+              <span class="indispensable">必須</span>
+            </div>
+            <%= f.collection_select(:client_id, Client.all, :id, :client_name, {prompt: "選択してください"}, {class:"select-box", id:"client"}) %>
+          </div>
+          <div class="form-group">
+            <div class='form-text-wrap'>
+              <label class="form-text">仕入単価</label>
+              <span class="indispensable">必須</span>
+            </div>
+            <%= f.text_field :purchase_price, class:"input-default", id:"purchase-price", placeholder:"例）1000"%>
+          </div>
+          <div class="form-group">
+            <div class='form-text-wrap'>
+              <label class="form-text">販売単価</label>
+              <span class="indispensable">必須</span>
+            </div>
+            <%= f.text_field :selling_price, class:"input-default", id:"selling-price", placeholder:"例）2000"%>
+          </div>
+
+        </div>
+        <%# /配送先の入力 %>
+        <div class='record-btn'>
+          <%= f.submit "登録" ,class:"record-red-btn", id:"button" %>
+        </div>
+      <% end %>
+    <%# 選択項目毎の表示 %>
+    </div>
+  </div>
+</div>
+
