@@ -46,3 +46,4 @@ RSpec.describe Purchase, type: :model do
     end
   end
 end
+
