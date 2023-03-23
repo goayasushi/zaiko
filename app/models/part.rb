@@ -1,6 +1,7 @@
 class Part < ApplicationRecord
   belongs_to :user
   belongs_to :client
+  has_many :purchases
 
   validates :part_name, presence: true
   with_options presence: true, format: { with: /\A\d*\z/ } do

@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   has_many :clients
   has_many :parts
+  has_many :purchases
 
   with_options presence: true, format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/ } do
     validates :last_name
