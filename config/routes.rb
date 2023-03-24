@@ -4,5 +4,5 @@ Rails.application.routes.draw do
   resources :clients, only: [:index, :new, :create]
   resources :parts, only: [:index, :new, :create]
   resources :purchases, only: [:index, :new, :create]
-  resources :sales, only: [:new, :create]
+  resources :sales, only: [:index,:new, :create]
 end

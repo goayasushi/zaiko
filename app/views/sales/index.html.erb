@@ -1,0 +1,33 @@
+<%= render "shared/header" %>
+
+<div class="wrapper">
+  <div class="side-bar">
+    <%= render "shared/side-bar" %>
+  </div>
+  <div class="main">
+    <%# 選択項目毎の表示 %>
+    <div class="main-title">出荷一覧</div>
+    <div class="main-content">
+      <table>
+        <tr>
+          <th>出荷コード</th>
+          <th>出荷日</th>
+          <th>部品名</th>
+          <th>仕入先名</th>
+          <th>仕入単価</th>
+          <th>出荷数</th>
+        </tr>
+        <% @sales.each do |sale| %>
+          <tr>
+            <td><%=  link_to sale.id, "#", class: "sale-id" %></td>
+            <td><%= sale.shipping_day %></td>
+            <td><%= sale.part.part_name %></td>
+            <td><%= sale.part.client.client_name %></td>
+            <td><%= sale.part.purchase_price %></td>
+            <td><%= sale.sale_quantity %></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>
