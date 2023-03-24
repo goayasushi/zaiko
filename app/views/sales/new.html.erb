@@ -1,0 +1,61 @@
+<%= render "shared/header" %>
+
+<div class="wrapper">
+  <div class="side-bar">
+    <%= render "shared/side-bar" %>
+  </div>
+  <div class="main">
+    <div class="main-content">
+    <%# 選択項目毎の表示 %>
+      <%= form_with model: @sale, id: 'charge-form', class: 'transaction-form-wrap',local: true do |f| %>
+        
+        <div class='shipping-address-form'>
+          <h1 class='info-input-haedline'>
+            出荷情報入力
+          </h1>
+          <%= render 'shared/error_messages', model: @sale %>
+          <div class="form-group">
+            <div class='form-text-wrap'>
+              <label class="form-text">部品名</label>
+              <span class="indispensable">必須</span>
+            </div>
+            <%= f.collection_select(:part_id, Part.all, :id, :part_name, {prompt: "選択してください"}, {class:"select-box", id:"part"}) %>
+          </div>
+          <div class="form-group">
+            <div class='form-text-wrap'>
+              <label class="form-text">出荷日</label>
+              <span class="indispensable">必須</span>
+            </div>
+            <div class='input-birth-wrap'>
+              <%= raw sprintf(
+                          f.date_select(
+                            :shipping_day,
+                            class:'select-birth',
+                            id:"shipping-day",
+                            use_month_numbers: true,
+                            prompt:'--',
+                            start_year: Time.now.year,
+                            end_year: 2000,
+                            date_separator: '%s'),
+                          "<p> 年 </p>", "<p> 月 </p>") + "<p> 日 </p>" %>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class='form-text-wrap'>
+              <label class="form-text">数量</label>
+              <span class="indispensable">必須</span>
+            </div>
+            <%= f.text_field :sale_quantity, class:"input-default", id:"sale-quantity", placeholder:"例）1"%>
+          </div>
+
+
+        </div>
+        <div class='record-btn'>
+          <%= f.submit "登録" ,class:"record-red-btn", id:"button" %>
+        </div>
+      <% end %>
+    <%# 選択項目毎の表示 %>
+    </div>
+  </div>
+</div>
+
