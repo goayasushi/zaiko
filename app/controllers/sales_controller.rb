@@ -1,4 +1,8 @@
 class SalesController < ApplicationController
+  def index
+    @sales = Sale.includes(:user).order("created_at DESC")
+  end
+
   def new
     @sale = Sale.new
   end
@@ -6,7 +10,7 @@ class SalesController < ApplicationController
   def create
     @sale = Sale.new(sale_params)
     if @sale.save
-      redirect_to clients_path
+      redirect_to sales_path
     else
       render :new
     end
