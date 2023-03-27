@@ -1,6 +1,7 @@
 require 'csv'
+bom = %w[EF BB BF].map { |e| e.hex.chr }.join
 
-CSV.generate do |csv|
+CSV.generate(bom) do |csv|
   csv_column_names = ["部品コード","部品名","仕入先名","仕入単価(税抜)","入庫数","出庫数","在庫数"]
   csv << csv_column_names
   @parts.each do |part|
