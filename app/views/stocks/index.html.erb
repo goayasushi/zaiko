@@ -7,6 +7,9 @@
   <div class="main">
     <%# 選択項目毎の表示 %>
     <div class="main-title">在庫一覧</div>
+    <div class='output-btn'>
+      <%= link_to 'CSV出力', stocks_path(format: :csv), class:"output-red-btn" %>
+    </div>
     <div class="main-content">
       <table>
         <tr>

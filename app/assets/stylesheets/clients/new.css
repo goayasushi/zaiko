@@ -100,3 +100,15 @@
   padding: 0 5px;
 }
 /* /入荷情報の入力 */
+
+/*  出力ボタン */
+.output-btn{
+  margin-bottom: 20px;
+}
+
+.output-red-btn {
+  text-decoration: none;
+  font-size: 18px;
+}
+
+/* /出力ボタン */
