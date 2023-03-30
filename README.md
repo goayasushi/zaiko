@@ -1,79 +1,76 @@
-# テーブル設計
+# アプリケーション名
+zaiko
 
-## Users テーブル
+# アプリケーション概要
+製造業における部品の入出庫・在庫を管理できるアプリケーション。
+棚卸表をcsv出力可能。
 
-| Column             | Type   | Options                   |
-| ------------------ | ------ | ------------------------- |
-| email              | string | null: false, unique: true |
-| encrypted_password | string | null: false               |
-| last_name          | string | null: false               |
-| first_name         | string | null: false               |
-| last_name_kana     | string | null: false               |
-| first_name_kana    | string | null: false               |
+# URL
+https://zaiko.onrender.com
 
-### Association
-- has_many :clients
-- has_many :parts
-- has_many :purchases
-- has_many :sales
+# テスト用アカウント
+- Basic認証ID：admin
+- Basic認証パスワード：2222
+- テスト用アカウントメールアドレス：test@com
+- テスト用アカウントパスワード：test11
 
-## Clients テーブル
+# 利用方法
+## 一覧機能
+- サイドバーから仕入先、部品、入庫、出庫、在庫の各一覧画面へ遷移
+## 登録機能
+- サイドバーから仕入先、部品、入庫、出庫、在庫の各登録画面へ遷移
+- 部品の登録は登録されている仕入先から選択
+- 入出庫の登録は登録されている部品から選択
+## CSV出力機能
+- 在庫一覧画面のCSV出力をクリックすることで出力
 
-| Column        | Type       | Options                        | 
-| ------------- | ---------- | ------------------------------ |
-| client_name   | string     | null: false                    |
-| postcode      | string     | null: false                    |
-| prefecture_id | integer    | null: false                    |
-| city          | string     | null: false                    |
-| block         | string     | null: false                    |
-| building      | string     |                                |
-| phone         | string     | null: false                    |
-| pic           | string     |                                |
-| user          | references | null: false, foreign_key: true |
+# 作成背景
+前職において製造部門があり、その部品管理に課題がありました。  
+具体的には、下記のような課題です。  
+- エクセル等で管理しており、商品名等のデータにばらつきが生じている  
+- 理論値在庫が算出できていない  
+- 棚卸表の作成に時間を要している  
 
-### Association
-- belongs_to :user
-- has_many :parts
-- belongs_to :prefecture
+の課題を解決できるような機能を考え、アプリケーションを作成しました。  
 
-## Parts テーブル
+# 要件
+[要件定義シート](https://docs.google.com/spreadsheets/d/1DFeQ_zoq5AOc3sLQ_lhf9LkXbmWWTPElGXurzbTBj6o/edit#gid=982722306) 
 
-| Column         | Type       | Options                        | 
-| -------------- | ---------- | ------------------------------ |
-| part_name      | string     | null: false                    |
-| purchase_price | integer    | null: false                    |
-| selling_price  | integer    | null: false                    |
-| user           | references | null: false, foreign_key: true |
-| client         | references | null: false, foreign_key: true |
+# 実装機能についての画像・GIF
+[![Image from Gyazo](https://i.gyazo.com/c1825731acd9e6938df379c452c4b4c0.png)](https://gyazo.com/c1825731acd9e6938df379c452c4b4c0)
 
-### Association
-- belongs_to :user
-- belongs_to :client
-- has_many :purchases
-- has_many :sales
+# 実装予定の機能
+- 一覧画面の月次表示（入庫、出庫、在庫）
+- 削除機能（仕入先、部品、入庫、出庫）
+- 編集機能（仕入先、部品、入庫、出庫）
+- 項目別集計のグラフ表示（仕入先毎、単月利益）
 
-## Purchases テーブル
+# データベース設計
+![ER](https://user-images.githubusercontent.com/76515589/228406188-4bb6a1d3-3ed0-4b00-bed1-efa57d6a7a58.png)
 
-| Column            | Type       | Options                        | 
-| ----------------- | ---------- | ------------------------------ |
-| arrival_day       | date       | null: false                    |
-| purchase_quantity | integer    | null: false                    |
-| user              | references | null: false, foreign_key: true |
-| part              | references | null: false, foreign_key: true |
+# 画面遷移図
+![transition](https://user-images.githubusercontent.com/76515589/228406559-4c2ec0c1-56d3-49a4-a244-6fb830474ef8.png)
 
-### Association
-- belongs_to :user
-- belongs_to :part
+# 開発環境
+- フロントエンド：HTML、CSS
+- バックエンド：Ruby
+- フレームワーク：Ruby on Rails
+- データベース：MySQL、PostgreSQL
+- インフラ：Render
+- テスト：RSpec
+- テキストエディタ：Visual Studio Code
+- タスク管理：GitHubプロジェクトボード
 
-## Sales テーブル
+# ローカルでの動作方法
+% git clone https://github.com/goayasushi/zaiko.git  
+% cd zaiko  
+% bundle install  
+% yarn install  
 
-| Column        | Type       | Options                        | 
-| ------------- | ---------- | ------------------------------ |
-| shipping_day  | date       | null: false                    |
-| sale_quantity | integer    | null: false                    |
-| user          | references | null: false, foreign_key: true |
-| part          | references | null: false, foreign_key: true |
-
-### Association
-- belongs_to :user
-- belongs_to :part
+# 工夫したポイント
+## 機能面
+- 部品別の入出庫数の表示：sumメソッドの使用
+- csv出力：csvライブラリの使用
+## タスク管理
+- 要件定義シートにて機能の優先順位を設定
+- 優先順位が高い機能において実装期日を設け、日々タスク管理を行う
