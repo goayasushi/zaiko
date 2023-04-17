@@ -16,7 +16,7 @@
         <div class='form-text-wrap'>
           <label class="form-text">在庫数確認日</label>
         </div>
-        <div class="search-form-group">
+        <div class="search-form-group"> 
           <div class='search-day' >
             <%= f.date_field :search_day %>
           </div>
@@ -39,14 +39,17 @@
           <th>在庫数</th>
         </tr>
         <% @parts.each do |part| %>
+          <% purchase_total = @purchases.select{ |x| x[:part_id] == part.id }.sum{ |x| x[:purchase_quantity]} %>
+          <% sale_total = @sales.select{ |x| x[:part_id] == part.id }.sum{ |x| x[:sale_quantity]} %>
+          <% stock_total = purchase_total - sale_total %>
           <tr>
             <td><%= link_to part.id, "#", class: "part-id" %></td>
             <td><%= part.part_name %></td>
             <td><%= part.client.client_name %></td>
             <td><%= part.purchase_price %></td>
-            <td><%= Purchase.totle_purchase_quantity(part.id) %></td>
-            <td><%= Sale.totle_sale_quantity(part.id) %></td>
-            <td><%= Purchase.totle_purchase_quantity(part.id) - Sale.totle_sale_quantity(part.id) %></td>
+            <td><%= purchase_total %></td>
+            <td><%= sale_total %></td>
+            <td><%= stock_total %></td>
           </tr>
         <% end %>
       </table>

@@ -5,5 +5,9 @@ Rails.application.routes.draw do
   resources :parts, only: [:index, :new, :create]
   resources :purchases, only: [:index, :new, :create]
   resources :sales, only: [:index,:new, :create]
-  resources :stocks, only: [:index]
+  resources :stocks, only: [:index] do
+    collection do
+      get 'search'
+    end
+  end
 end
