@@ -1,7 +1,6 @@
 class StocksController < ApplicationController
   def index
     @parts = Part.all.includes(:user)
-
     respond_to do |format|
       format.html
       format.csv do
@@ -9,4 +8,11 @@ class StocksController < ApplicationController
       end
     end
   end
+
+  def search
+    @parts = Part.all.includes(:user)
+    @purchases = Purchase.search(params[:search_day])
+    @sales = Sale.search(params[:search_day])
+  end
 end
+

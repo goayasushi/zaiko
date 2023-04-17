@@ -10,4 +10,12 @@ class Purchase < ApplicationRecord
   def self.totle_purchase_quantity(part_id)
     Purchase.where(part_id: part_id).sum(:purchase_quantity)
   end
+  
+  def self.search(search)
+    if search != ""
+      Purchase.where('arrival_day <= ?', search)
+    else
+      Purchase.all
+    end
+  end
 end
