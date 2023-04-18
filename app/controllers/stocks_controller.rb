@@ -13,6 +13,13 @@ class StocksController < ApplicationController
     @parts = Part.all.includes(:user)
     @purchases = Purchase.search(params[:search_day])
     @sales = Sale.search(params[:search_day])
+    binding.pry
+    respond_to do |format|
+      format.html
+      format.csv do
+        send_data render_to_string, filename: "search.csv", type: :csv
+      end
+    end
   end
 end
 
