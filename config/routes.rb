@@ -10,4 +10,9 @@ Rails.application.routes.draw do
       get 'search'
     end
   end
+  resources :totalizations, only: [] do
+    collection do
+      get 'monthly'
+    end
+  end
 end
