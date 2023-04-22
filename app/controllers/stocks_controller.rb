@@ -1,6 +1,6 @@
 class StocksController < ApplicationController
   def index
-    @parts = Part.all.includes(:user)
+    @parts = Part.includes(:user)
     respond_to do |format|
       format.html
       format.csv do
