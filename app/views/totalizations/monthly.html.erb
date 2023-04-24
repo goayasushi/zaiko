@@ -7,6 +7,15 @@
   <div class="main">
     <%# 選択項目毎の表示 %>
     <div class="main-title">月次推移</div>
-    <%= line_chart @graph_datas %>
+    <%= column_chart @graph_datas, options = {
+      title: "月次利益推移",
+      ytitle: "利益額",
+      max_width: '100vw',
+      thousands: ",", 
+      suffix: "円",
+      xmin: "2022-12" ,
+      xmax: Date.today.months_since(6)
+    } %>
+
   </div>
 </div>

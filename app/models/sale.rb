@@ -20,7 +20,7 @@ class Sale < ApplicationRecord
   end
 
   def self.chart
-    sales = Sale.includes(:user)
+    sales = Sale.includes(:user).order(shipping_day: :asc)
     data = {}
     datas = []
     sales.each do |sale|
