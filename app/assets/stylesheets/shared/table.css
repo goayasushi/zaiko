@@ -1,3 +1,4 @@
+/* 共通 */
 table {
   border-collapse: collapse;
   width: 100%;
@@ -12,7 +13,25 @@ th,td {
   padding: 5px;
   text-align: center;
 }
+/* /共通 */
+
 
 .client-name{
+  text-decoration: none;
+}
+
+.part-name{
+  text-decoration: none;
+}
+
+.part-id{
+  text-decoration: none;
+}
+
+.sale-id{
+  text-decoration: none;
+}
+
+.purchase-id{
   text-decoration: none;
 }
