@@ -1,0 +1,21 @@
+databases:
+  - name: zaiko-db
+    databaseName: zaiko_db
+    user: zaiko
+    region: frankfurt
+
+services:
+  - type: web
+    name: zaiko
+    env: ruby
+    region: frankfurt
+    plan: free
+    buildCommand: "./bin/render-build.sh"
+    startCommand: "bundle exec puma -C config/puma.rb"
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: zaiko-db
+          property: connectionString
+      - key: RAILS_MASTER_KEY
+        sync: false
